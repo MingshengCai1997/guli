@@ -4,22 +4,16 @@ package com.sheng.eduservice.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sheng.commonutils.R;
-import com.sheng.eduservice.EduApplication;
 import com.sheng.eduservice.entity.EduTeacher;
 import com.sheng.eduservice.entity.vo.TeacherQuery;
 import com.sheng.eduservice.service.EduTeacherService;
-import com.sun.org.apache.regexp.internal.RE;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import sun.font.TrueTypeFont;
 
-import javax.naming.Name;
-import javax.print.attribute.standard.MediaSize;
-import java.lang.annotation.ElementType;
 import java.util.List;
 
 /**
@@ -32,6 +26,7 @@ import java.util.List;
 @Api(tags = "讲师管理")
 @RestController
 @RequestMapping("/eduservice/edu-teacher")
+@CrossOrigin
 public class EduTeacherController {
     @Autowired
     private EduTeacherService eduTeacherService;
@@ -97,6 +92,8 @@ public class EduTeacherController {
             queryWrapper.le("gmt_modified", end);
         }
 
+        // 按照创建时间倒序
+        queryWrapper.orderByDesc("gmt_create");
         eduTeacherService.page(teacherPage, queryWrapper);
         long total = teacherPage.getTotal();
         List<EduTeacher> records = teacherPage.getRecords();
@@ -150,8 +147,8 @@ public class EduTeacherController {
      * @return
      */
     @ApiOperation("讲师的修改功能")
-    @PostMapping("updateTeacher/{id}")
-    public R update( @ApiParam(name = "teacher", value = "讲师对象", required = true)
+    @PostMapping("updateTeacher")
+    public R update( @ApiParam(name = "teacher", value = "讲师对象", required = false)
                     @RequestBody EduTeacher teacher) {
         boolean b = eduTeacherService.updateById(teacher);
         return b == true? R.ok():R.error();
