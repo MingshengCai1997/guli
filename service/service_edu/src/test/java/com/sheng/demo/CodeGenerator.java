@@ -63,7 +63,7 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
 
         // 如果有多张表的话，就使用逗号进行分隔
-        strategy.setInclude("edu_teacher");
+        strategy.setInclude("edu_subject");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
