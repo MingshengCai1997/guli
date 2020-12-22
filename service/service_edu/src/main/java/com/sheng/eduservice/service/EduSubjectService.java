@@ -14,5 +14,5 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface EduSubjectService extends IService<EduSubject> {
     // 添加课程分类
-    public void saveSubject(MultipartFile file);
+    public void saveSubject(MultipartFile file, EduSubjectService subjectService);
 }
