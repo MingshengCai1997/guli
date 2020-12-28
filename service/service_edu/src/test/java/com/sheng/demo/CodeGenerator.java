@@ -62,8 +62,8 @@ public class CodeGenerator {
         // 5、策略配置【逆向工程，将数据库中的表映射到实体类中】
         StrategyConfig strategy = new StrategyConfig();
 
-        // 如果有多张表的话，就使用逗号进行分隔
-        strategy.setInclude("edu_subject");
+        // 如果有多张表的话，就使用逗号进行分隔,根据数据库的表自动生成代码
+        strategy.setInclude("edu_chapter");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀

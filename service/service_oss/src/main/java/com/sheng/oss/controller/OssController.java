@@ -3,7 +3,6 @@ package com.sheng.oss.controller;
 import com.sheng.commonutils.R;
 import com.sheng.oss.service.OssService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
